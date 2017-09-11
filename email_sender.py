@@ -1,9 +1,6 @@
 
 import smtplib
 
-sent_from = gmail_user
-to = ['drhorv@gmail.com']
-
 email_template = """\
 From: %s
 To: %s
@@ -21,6 +18,8 @@ def send_email(gmail_user, gmail_password, subject, body):
         server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         server.ehlo()
         server.login(gmail_user, gmail_password)
+        sent_from = gmail_user
+        to = [gmail_user]
         email_text = email_template % (sent_from, ", ".join(to), subject, body)
         server.sendmail(sent_from, to, email_text.encode('utf8'))
         server.close()
