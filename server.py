@@ -56,7 +56,6 @@ def scrape_and_check(store, username, password, gmail_user, gmail_password):
     store['appartments'] = appartments
     for a in new_appartments:
         email_sender.send_email(gmail_user, gmail_password, "Ny lgh!", create_body(a))
-        break
 
 def job(datastore, username, password, gmail_user, gmail_password):
     print(get_timestamp() + " job run")
