@@ -3,12 +3,17 @@
 from splinter import Browser
 import json
 import sys
+import re
+
+regex = r"<img src=\"(https:\/\/nya\.boplats\.se\/bilder\/1handPicture\/[a-zA-Z0-9]*)\?w=300\" alt=\"Planskiss\" class=\"photo floorplan\">"
+
 
 def login(browser, username, password):
     browser.visit('https://nya.boplats.se/login/')
     browser.find_by_id('username').fill(username)
     browser.fill('password', password)
     button = browser.find_by_name('login_button').click()
+
 
 def extract_table_info(browser, link_item):
     url = link_item['href']
@@ -60,14 +65,26 @@ def add_details(browser, apparment):
 
         apparment['apply_status'] = apply_status
 
+        images = browser.find_by_tag('img')
+
+        for im in images:
+            html = im.outer_html
+            matches = re.search(regex, html)
+            if matches:
+                floor_plan_link = matches.group(1)
+                apparment['floor_plan'] = floor_plan_link
+
+        floor_plan_links = browser.find_link_by_partial_href('https://nya.boplats.se/bilder/1handPicture/')
+        if floor_plan_links:
+            apparment['floor_plan'] = floor_plan_links[0]['href']
+
         return apparment
 
-
-if __name__ == '__main__':
+def scrape(username, password):
     appartments = []
 
     browser = Browser('chrome', headless=True)
-    login(browser, sys.argv[1], sys.argv[2])
+    login(browser, username, password)
 
     browser.click_link_by_text('Lgh')
     links = browser.find_link_by_partial_href('https://nya.boplats.se/objekt/1hand/')
@@ -78,4 +95,10 @@ if __name__ == '__main__':
     for a in appartments:
         add_details(browser, a)
 
+    return appartments
+
+
+
+if __name__ == '__main__':
+    appartments = scrape(sys.argv[1], sys.argv[2])
     print(json.dumps(appartments))
