@@ -13,7 +13,7 @@ checkbox-support==0.22
 click==6.7
 command-not-found==0.3
 constantly==15.1.0
-cryptography==1.7.1
+cryptography==3.2
 defer==1.0.6
 distro-info===0.14build1
 feedparser==5.1.3
