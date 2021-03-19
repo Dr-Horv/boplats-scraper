@@ -27,7 +27,7 @@ hyperlink==17.2.1
 idna==2.2
 incremental==17.5.0
 ipaddress==1.0.18
-Jinja2==2.9.5
+Jinja2==2.11.3
 keyring==10.3.1
 keyrings.alt==2.2
 language-selector==0.1
