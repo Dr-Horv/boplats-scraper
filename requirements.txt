@@ -2,7 +2,7 @@ apt-select==2.0.0
 apturl==0.5.2
 argcomplete==1.7.0
 attrs==17.2.0
-autobahn==17.6.2
+autobahn==20.12.3
 Automat==0.6.0
 beautifulsoup4==4.5.3
 blinker==1.3
