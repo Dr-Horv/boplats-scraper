@@ -46,7 +46,7 @@ onboard==1.4.1
 padme==1.1.1
 pbr==3.1.1
 pexpect==4.2.1
-Pillow==4.0.0
+Pillow==9.0.1
 plainbox==0.25
 progressbar==2.3
 psutil==5.0.1
