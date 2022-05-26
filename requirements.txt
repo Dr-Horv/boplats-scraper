@@ -89,7 +89,7 @@ system-service==0.3
 systemd-python==233
 tornado==4.5.2
 tqdm==4.14.0
-Twisted==17.5.0
+Twisted==22.4.0
 txaio==2.8.0
 txtorcon==0.19.3
 ubuntu-drivers-common==0.0.0
